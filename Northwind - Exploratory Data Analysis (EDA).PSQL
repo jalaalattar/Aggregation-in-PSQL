@@ -1,0 +1,58 @@
+/***** PSQL: Questions *****/
+
+/* 1.	Get the details of the orders made by VINET, TOMSP, HANAR, VICTE, SUPRD, CHOPS from the orders table. */
+
+select 
+order_id,
+order_date,
+customer_id,
+ship_country,
+employee_id
+from public.orders
+where customer_id in ('VINET', 'TOMSP', 'HANAR', 'VICTE', 'SUPRD', 'CHOPS')
+
+/* 2.	According to the customers table, list down the customer_ids which start from "L" and end at "S" */
+
+select customer_id 
+from public.customers 
+where customer_id like 'L%' and customer_id like '%S'
+
+/* 3.	According to the customers table, list down the customer_ids of france which starts from “L”E  */
+
+select customer_id 
+from public.customers 
+where customer_id like 'L%' and country = 'France'
+
+/* 4.	The company is planning to give a 10% discount on products above 10 dollars price point(including). 
+Get the list of the product_id which are going to be listed at discounted price  */
+
+select product_id
+from public.products
+where unit_price <10
+
+/* 5.	According to the products table, which category_ids have more than 500 units_in_stock?  */
+
+select category_id, sum (units_in_stock) Total_Stock
+from public.products
+group by category_id
+having sum (units_in_stock) >500
+
+/* 6.	According to the products table, list the supplier_ids responsible for supplying exactly 5 products from the list. */
+
+select 
+supplier_id,
+count(product_name)
+from public.products
+group by supplier_id
+having count(product_name)= 5
+
+
+/*  7.	Using the orders table, create a table where the count of orders placed would be mentioned against every customer_id.  */
+
+select 
+customer_id,
+count(order_id) count_of_orders
+from public.orders
+group by 
+customer_id
+
