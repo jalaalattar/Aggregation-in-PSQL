@@ -56,3 +56,5 @@ from public.orders
 group by 
 customer_id
 
+/*****  FILE END  *****/
+
