@@ -4,3 +4,5 @@ A small project on Data Analysis to help Northwind Retail to in how they can opt
 ## Database and Tools
 + PostgreSQL
 + pgAdmin4
+
+File Attached (NW.SQL)
